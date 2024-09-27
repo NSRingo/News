@@ -1,0 +1,28 @@
+{
+	"name": "news",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/NSRingo/News.git"
+	},
+	"directories": {
+		"example": "example"
+	},
+	"scripts": {
+		"build": "rollup -c",
+		"build:debug": "rollup --config --configDebug"
+	},
+	"browserslist": [
+		"iOS >= 15"
+	],
+	"keywords": [],
+	"author": "VirgilClyne",
+	"license": "Apache-2.0",
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^25.0.7",
+		"@rollup/plugin-json": "^6.1.0",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-terser": "^0.4.4",
+		"rollup": "^4.9.6"
+	}
+}
