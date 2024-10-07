@@ -7,6 +7,13 @@
 #!icon=https://developer.apple.com/assets/elements/icons/news/news-128x128.png
 #!category= iRingo
 
+#[filter_local]
+# > News
+host, news-edge.apple.com, News
+host, news-events.apple.com, News
+host, apple.comscoreresearch.com, News
+host, news-assets.apple.com, News
+
 #[rewrite_local]
 # 📰 News Configs
 ^https?:\/\/news(-todayconfig)?-edge\.apple\.com\/v1\/configs url script-request-body https://github.com/NSRingo/News/releases/latest/download/request.js
