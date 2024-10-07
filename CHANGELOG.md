@@ -1,1 +1,2 @@
-  * 首次发布
+### 🛠️ Bug Fixes
+  * Storefront 数据库

@@ -70,7 +70,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 									// 路径判断
 									switch (PATH) {
 										case "/v1/configs":
-											if (Settings.CountryCode !== "AUTO") body.storefrontId = Configs.Storefront.get(Settings.CountryCode) ?? "143441"
+											if (Settings.CountryCode !== "AUTO") body.storefrontId = Configs.Storefront[Settings.CountryCode];
 											if (body?.deviceInfo?.preferredLanguages) {
 												body.deviceInfo.preferredLanguages.unshift("zh-SG", "zh-Hans-US", "zh-Hant-US");
 												body.deviceInfo.preferredLanguages.push("en");
@@ -141,7 +141,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 										parsecParameters = JSON.parse(parsecParameters);
 										//log(`🚧 调试信息`, `JSON.parse(parsecParameters): ${parsecParameters}`, "");
 										if (parsecParameters.storeFront) {
-											if (Settings.CountryCode !== "AUTO") parsecParameters.storeFront = parsecParameters.storeFront.replace(/[\d]{6}/, Configs.Storefront.get(Settings.CountryCode) || StorefrontID);
+											if (Settings.CountryCode !== "AUTO") parsecParameters.storeFront = parsecParameters.storeFront.replace(/[\d]{6}/, Configs.Storefront[Settings.CountryCode]);
 										};
 										parsecParameters = JSON.stringify(parsecParameters);
 										//log(`🚧 调试信息`, `JSON.stringify(parsecParameters): ${parsecParameters}`, "");
@@ -150,7 +150,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 										url.searchParams.set("parsecParameters", parsecParameters);
 									};
 									if (StorefrontID) {
-										if (Settings.CountryCode !== "AUTO") url.searchParams.set("storefrontID", Configs.Storefront.get(Settings.CountryCode) || StorefrontID);
+										if (Settings.CountryCode !== "AUTO") url.searchParams.set("storefrontID", Configs.Storefront[Settings.CountryCode]);
 									};
 									if (NewsPlusUser) url.searchParams.set("newsPlusUser", Settings.NewsPlusUser || NewsPlusUser);
 									break;
