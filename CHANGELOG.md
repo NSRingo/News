@@ -1,2 +1,2 @@
-### 🛠️ Bug Fixes
-  * Storefront 数据库
+### 🔄 Other Changes
+  * 自动生成模块
