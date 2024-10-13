@@ -1,0 +1,27 @@
+#!name = {{@package 'displayName'}}
+#!desc = {{inline (@package 'description')}}\n注：该模块不包含代理规则组，代理规则组需要匹配代理策略组为🇺🇸🇬🇧🇨🇦🇦🇺线路，使用过程中gateway.icloud.com应该走与News相同的代理线路。
+#!openUrl = {{@package 'openUrl'}}
+#!author = {{@package 'contributors'}}
+#!homepage = {{@package 'homepage'}}
+#!icon = {{@package 'icon'}}
+#!category = {{@package 'organizationName'}}
+#!date = {{now "yyyy-MM-dd HH:mm:ss"}}
+#!version = {{@package 'version'}}
+
+#[filter_local]
+# > News
+host, news-edge.apple.com, News
+host, news-events.apple.com, News
+host, apple.comscoreresearch.com, News
+host, news-assets.apple.com, News
+
+#[rewrite_local]
+# 📰 News Configs
+^https?:\/\/news(-todayconfig)?-edge\.apple\.com\/v1\/configs url script-request-body https://github.com/NSRingo/News/releases/download/v{{@package 'version'}}/request.js
+# 📰 News Event
+^https?:\/\/news(-sports)?-events\.apple\.com\/analyticseventsv2\/async url script-request-body https://github.com/NSRingo/News/releases/download/v{{@package 'version'}}/request.js
+# 📰 News Search
+^https?:\/\/news-client-search\.apple\.com\/v1\/search url script-request-header https://github.com/NSRingo/News/releases/download/v{{@package 'version'}}/request.js
+
+#[mitm]
+hostname = news-edge.apple.com, news-todayconfig-edge.apple.com, news-events.apple.com, news-sports-events.apple.com, news-client.apple.com, news-client-search.apple.com
