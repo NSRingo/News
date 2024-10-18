@@ -1,10 +1,10 @@
 {
 	"name": "news",
-	"version": "3.1.4",
+	"version": "3.1.5",
 	"organizationName": " iRingo",
 	"displayName": " iRingo: 📰 News",
 	"description": "1.自定义解锁News的地区\n2.Coming Soon…",
-	"homepage": "https://github.com/NSRingo/News/wiki",
+	"homepage": "https://NSRingo.github.io/guide/apple-news",
 	"openUrl": "http://boxjs.com/#/app/iRingo.News",
 	"icon": "https://developer.apple.com/assets/elements/icons/news/news-128x128.png",
 	"keywords": [],
@@ -29,8 +29,9 @@
 		"example": "example"
 	},
 	"scripts": {
-		"build": "rollup -c",
-		"build:debug": "rollup --config --configDebug",
+		"serve": "webpack serve",
+		"build": "rspack build",
+		"build:dev": "rspack build -c rspack.dev.config.js --mode=development",
 		"build:args": "arguments-builder build",
 		"dts": "arguments-builder dts"
 	},
@@ -39,10 +40,8 @@
 	],
 	"devDependencies": {
 		"@iringo/arguments-builder": "^1.7.3",
-		"@rollup/plugin-commonjs": "^25.0.7",
-		"@rollup/plugin-json": "^6.1.0",
-		"@rollup/plugin-node-resolve": "^15.2.3",
-		"@rollup/plugin-terser": "^0.4.4",
-		"rollup": "^4.9.6"
+		"@rspack/cli": "^1.0.13",
+		"@rspack/core": "^1.0.13",
+		"node-polyfill-webpack-plugin": "^4.0.0"
 	}
 }

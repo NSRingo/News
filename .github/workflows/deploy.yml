@@ -10,22 +10,21 @@ permissions:
   contents: read
 
 jobs:
-  debug:
-    uses: ./.github/workflows/debug.yml
+  dev:
+    uses: ./.github/workflows/dev.yml
     secrets: inherit
   deploy:
-    needs: debug
+    needs: dev
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
         uses: actions/download-artifact@master
         with:
           name: artifact
-          path: dist
       - name: Deploy
         uses: exuanbo/actions-deploy-gist@main
         with:
           token: ${{ secrets.GIST_TOKEN }}
           gist_id: fe3c29c45fd096d701ebf5b43f1e76b1
           gist_description: " iRingo: 📰 News β"
-          file_path: dist/request.js
+          file_path: dist/request.bundle.js
