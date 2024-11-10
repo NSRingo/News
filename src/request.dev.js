@@ -1,4 +1,5 @@
-import { $platform, URL, _, Storage, fetch, notification, log, logError, wait, done, getScript, runScript } from "./utils/utils.mjs";
+import { $app, Lodash as _, Storage, fetch, notification, log, logError, wait, done } from "@nsnanocat/util";
+import { URL } from "@nsnanocat/url";
 import database from "./function/database.mjs";
 import setENV from "./function/setENV.mjs";
 // 构造回复数据
@@ -171,12 +172,12 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 })()
 	.catch(e => logError(e))
 	.finally(() => {
-		switch ($response) {
-			default: // 有构造回复数据，返回构造的回复数据
-				//log(`🚧 finally`, `echo $response: ${JSON.stringify($response, null, 2)}`, "");
+		switch (typeof $response) {
+			case "object": // 有构造回复数据，返回构造的回复数据
+				//log("🚧 finally", `echo $response: ${JSON.stringify($response, null, 2)}`, "");
 				if ($response.headers?.["Content-Encoding"]) $response.headers["Content-Encoding"] = "identity";
 				if ($response.headers?.["content-encoding"]) $response.headers["content-encoding"] = "identity";
-				switch ($platform) {
+				switch ($app) {
 					default:
 						done({ response: $response });
 						break;
@@ -189,9 +190,13 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 						break;
 				}
 				break;
-			case undefined: // 无构造回复数据，发送修改的请求数据
-				//log(`🚧 finally`, `$request: ${JSON.stringify($request, null, 2)}`, "");
+			case "undefined": // 无构造回复数据，发送修改的请求数据
+				//log("🚧 finally", `$request: ${JSON.stringify($request, null, 2)}`, "");
 				done($request);
+				break;
+			default:
+				logError(`不合法的 $response 类型: ${typeof $response}`, "");
+				done();
 				break;
 		}
 	});

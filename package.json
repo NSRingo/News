@@ -38,11 +38,12 @@
 		"iOS >= 15"
 	],
 	"devDependencies": {
-		"@iringo/modkit": "1.2.0",
+		"@iringo/modkit": "1.3.0",
 		"@iringo/modkit-plugin-egern": "1.2.0",
 		"@rsbuild/plugin-node-polyfill": "^1.2.0"
 	},
 	"dependencies": {
-		"@nsnanocat/util": "^1.3.6"
+		"@nsnanocat/url": "^1.0.1",
+		"@nsnanocat/util": "^1.4.7"
 	}
 }
