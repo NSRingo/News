@@ -29,8 +29,9 @@
 		"example": "example"
 	},
 	"scripts": {
-		"dev": "modkit dev",
+		"dev": "modkit dev -c modkit.dev.config.js",
 		"build": "modkit build",
+		"build:dev": "modkit build -c modkit.dev.config.js",
 		"dts": "modkit dts"
 	},
 	"browserslist": [
