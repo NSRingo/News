@@ -1,4 +1,5 @@
 import { defineConfig } from "@iringo/modkit";
+import type { ModuleContent } from "@iringo/modkit";
 import { pluginEgern } from "@iringo/modkit-plugin-egern";
 import { pluginBoxJs } from "@iringo/modkit/plugins/boxjs";
 import { pluginDts } from "@iringo/modkit/plugins/dts";
@@ -21,47 +22,68 @@ export default defineConfig({
 				date: new Date().toLocaleString("zh-CN"),
 			},
 		},
-		content: {
-			rule: [
-				"DOMAIN,gateway.icloud.com,{{{Proxy}}}",
-				{
-					type: "RULE-SET",
-					assetKey: "News.list",
-					policyName: {
-						custom: "{{{Proxy}}}",
+		content: ({ pluginName }) => {
+			const content: ModuleContent = {
+				script: [
+					{
+						name: "📰 News.v1.configs.request",
+						type: "http-request",
+						pattern: "^https?://news(-todayconfig)?-edge.apple.com/v1/configs",
+						requiresBody: true,
+						scriptKey: "request",
+						injectArgument: true,
 					},
-					description: "📰 News",
+					{
+						name: "📰 News.analyticseventsv2.async.request",
+						type: "http-request",
+						pattern: "^https?://news(-sports)?-events.apple.com/analyticseventsv2/async",
+						requiresBody: true,
+						scriptKey: "request",
+						injectArgument: true,
+					},
+					{
+						name: "📰 News.v1.search.request",
+						type: "http-request",
+						pattern: "^https?://news-client-search.apple.com/v1/search",
+						requiresBody: false,
+						scriptKey: "request",
+						injectArgument: true,
+					},
+				],
+				mitm: {
+					hostname: ["news-edge.apple.com", "news-todayconfig-edge.apple.com", "news-events.apple.com", "news-sports-events.apple.com", "news-client.apple.com", "news-client-search.apple.com"],
 				},
-			],
-			script: [
-				{
-					name: "📰 News.v1.configs.request",
-					type: "http-request",
-					pattern: "^https?://news(-todayconfig)?-edge.apple.com/v1/configs",
-					requiresBody: true,
-					scriptKey: "request",
-					injectArgument: true,
-				},
-				{
-					name: "📰 News.analyticseventsv2.async.request",
-					type: "http-request",
-					pattern: "^https?://news(-sports)?-events.apple.com/analyticseventsv2/async",
-					requiresBody: true,
-					scriptKey: "request",
-					injectArgument: true,
-				},
-				{
-					name: "📰 News.v1.search.request",
-					type: "http-request",
-					pattern: "^https?://news-client-search.apple.com/v1/search",
-					requiresBody: false,
-					scriptKey: "request",
-					injectArgument: true,
-				},
-			],
-			mitm: {
-				hostname: ["news-edge.apple.com", "news-todayconfig-edge.apple.com", "news-events.apple.com", "news-sports-events.apple.com", "news-client.apple.com", "news-client-search.apple.com"],
-			},
+			};
+			switch (pluginName) {
+				case "surge":
+					content.rule = [
+						"DOMAIN,gateway.icloud.com,{{{Proxy}}} //☁️ iCloud",
+						{
+							type: "RULE-SET",
+							assetKey: "News.list",
+							policyName: {
+								custom: "{{{Proxy}}}",
+							},
+							description: "📰 News",
+						},
+					]
+					break;
+				case "loon":
+				case "stash":
+				default:
+					content.rule = [
+						"# > iCloud",
+						"DOMAIN,gateway.icloud.com,PROXY",
+						"# > News",
+						"DOMAIN,news-edge.apple.com,PROXY",
+						"DOMAIN,news-events.apple.com,PROXY",
+						"DOMAIN,apple.comscoreresearch.com,PROXY",
+						"# News+ Audio",
+						"URL-REGEX,^https?:\/\/news-assets\.apple\.com\/(audio-narrative|podcast\/audio)\/.*,PROXY",
+					];
+					break;
+			};
+			return content;
 		},
 		arguments: [
 			{

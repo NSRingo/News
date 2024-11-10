@@ -16,8 +16,8 @@ importers:
         version: 1.4.7
     devDependencies:
       '@iringo/modkit':
-        specifier: 1.3.0
-        version: 1.3.0(@swc/helpers@0.5.13)
+        specifier: 1.3.1
+        version: 1.3.1(@swc/helpers@0.5.13)
       '@iringo/modkit-plugin-egern':
         specifier: 1.2.0
         version: 1.2.0
@@ -35,29 +35,29 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
-  '@iringo/modkit-plugin-boxjs@1.3.0':
-    resolution: {integrity: sha512-cJ4pWAAOFApF3Kfw+C65oLHbvtmYsnec6apl/ASqmfA4rnsEDVUgIqYh3cdV4aXUSHMB1xK7JL0xKtzbde3TbQ==}
+  '@iringo/modkit-plugin-boxjs@1.3.1':
+    resolution: {integrity: sha512-MYk32Tc76MtLAriekpW/yzJ1dpmTzHpXedbdIF1X0bqSqRowmWqLLaHNaDJ8d664s3ULKfbMXNy4deFfGgOaJA==}
 
-  '@iringo/modkit-plugin-dts@1.3.0':
-    resolution: {integrity: sha512-bbANWDaT+PkYxQEvTGG4uzxKsXxXomfRuQaW3rC0VwCnwc2A6veZHHGMc6hJRHjQBpFjBWDZSkjARd47sricTQ==}
+  '@iringo/modkit-plugin-dts@1.3.1':
+    resolution: {integrity: sha512-D8C145hSS0xdLCGXfwkbt82tcqY3bymzwAIhrXvkkJhUVPAvT9EkEcU64rHdbNVbrtbwQ2188IoFASSEh6+d1A==}
 
   '@iringo/modkit-plugin-egern@1.2.0':
     resolution: {integrity: sha512-iYLwlQW88aBtIcGjLp/V4Vjmc5uZ0lGEPHzvZaqSBbR9w+QNXGHCAXucba33wj1/jfk9ul134NUJ0WO1axnIbw==}
 
-  '@iringo/modkit-plugin-loon@1.3.0':
-    resolution: {integrity: sha512-WBoOg6Jpyins76eMJ+G+ta5dlyZ7r+oj/tABH+9QV345bceQ7OgMevfYsdyRVCSyskvJuvZPTMZMkwEN2MUl3A==}
+  '@iringo/modkit-plugin-loon@1.3.1':
+    resolution: {integrity: sha512-D937zapOcG/VL7N7e/VMRnW1dgkx81bhhuvRQAp6FrGrUPj/obzw/h/0zA8O6H9eG6HJxa5QvAq0emhl5rQTlA==}
 
-  '@iringo/modkit-plugin-stash@1.3.0':
-    resolution: {integrity: sha512-n4LhPWKktRn5qS3jAslPHlgE1FGTzZbJf5qi3nQw63zc0Wry4/R7DGCDgKZVnnFbWO4y7s5OXY3LWBqt+GV+/Q==}
+  '@iringo/modkit-plugin-stash@1.3.1':
+    resolution: {integrity: sha512-jYH0nNOPctoakAEQv8sGU8/uOKbNlhylCWAbRFlaWVQtJ7Hwi/vlluKYICmp8nyEE2nCV7zqJI5gNa8o8MnCtg==}
 
-  '@iringo/modkit-plugin-surge@1.3.0':
-    resolution: {integrity: sha512-cboDsChZGjDdrCM1a5C8ibyu7K5zPsumTfEMHMqQsTwl7C8V0KHu/tgUe5k2/Q9wBcAS/bviVv6AIS5KfWxB0A==}
+  '@iringo/modkit-plugin-surge@1.3.1':
+    resolution: {integrity: sha512-Iuua3hmufh903mM23UgcfDP07PJ0MnolKu6UFcN2XRwA1jDI9UecV2wx/tjW9bsv6+gp1rq4yjojDFCL0UucXQ==}
 
-  '@iringo/modkit-shared@1.3.0':
-    resolution: {integrity: sha512-hNF0CCMx0suT7jmCJ298ITvq/ph7jYuOzjZY/WhyjvafDwBnM4p5WTrcv0SU0M+cIDlFyuetGO7ReseB+GQNGA==}
+  '@iringo/modkit-shared@1.3.1':
+    resolution: {integrity: sha512-TRU34hFyQFnAOs9YrdTCu38qFgiiQdjA6GJsK082BrAKBl+89d7EG1sxvGfq1bXtjLUU4oXs1u76e8s8kVkgLQ==}
 
-  '@iringo/modkit@1.3.0':
-    resolution: {integrity: sha512-do8mT8j0gw0wqDer+aruMmfL+tt3L8/8jk4/By1DWplh/adPXrGLfhx2Ukr6Y6JMLRJUk7kXVIJq1Jk+kwWicg==}
+  '@iringo/modkit@1.3.1':
+    resolution: {integrity: sha512-uSysUIK6Is7JqwIXy6aY/U6/bOY7L5g5kPYhvjEatiRGAPnoNwNrNtZEe0H722yOhAeS3gVCwzrk0jDutODsZQ==}
     hasBin: true
 
   '@iringo/surge2egern@1.2.0':
@@ -1322,18 +1322,18 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.25.9': {}
 
-  '@iringo/modkit-plugin-boxjs@1.3.0':
+  '@iringo/modkit-plugin-boxjs@1.3.1':
     dependencies:
-      '@iringo/modkit-shared': 1.3.0
+      '@iringo/modkit-shared': 1.3.1
 
-  '@iringo/modkit-plugin-dts@1.3.0':
+  '@iringo/modkit-plugin-dts@1.3.1':
     dependencies:
-      '@iringo/modkit-shared': 1.3.0
+      '@iringo/modkit-shared': 1.3.1
       ts-morph: 23.0.0
 
   '@iringo/modkit-plugin-egern@1.2.0':
     dependencies:
-      '@iringo/modkit-shared': 1.3.0
+      '@iringo/modkit-shared': 1.3.1
       '@iringo/surge2egern': 1.2.0
     transitivePeerDependencies:
       - bufferutil
@@ -1341,21 +1341,21 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@iringo/modkit-plugin-loon@1.3.0':
+  '@iringo/modkit-plugin-loon@1.3.1':
     dependencies:
-      '@iringo/modkit-shared': 1.3.0
+      '@iringo/modkit-shared': 1.3.1
 
-  '@iringo/modkit-plugin-stash@1.3.0':
+  '@iringo/modkit-plugin-stash@1.3.1':
     dependencies:
-      '@iringo/modkit-shared': 1.3.0
+      '@iringo/modkit-shared': 1.3.1
       yaml: 2.6.0
 
-  '@iringo/modkit-plugin-surge@1.3.0':
+  '@iringo/modkit-plugin-surge@1.3.1':
     dependencies:
-      '@iringo/modkit-shared': 1.3.0
+      '@iringo/modkit-shared': 1.3.1
       qrcode-terminal: 0.12.0
 
-  '@iringo/modkit-shared@1.3.0':
+  '@iringo/modkit-shared@1.3.1':
     dependencies:
       '@iringo/utils': 1.0.2
       '@modern-js/plugin': 2.61.0
@@ -1363,14 +1363,14 @@ snapshots:
       package-up: 5.0.0
       type-fest: 4.26.1
 
-  '@iringo/modkit@1.3.0(@swc/helpers@0.5.13)':
+  '@iringo/modkit@1.3.1(@swc/helpers@0.5.13)':
     dependencies:
-      '@iringo/modkit-plugin-boxjs': 1.3.0
-      '@iringo/modkit-plugin-dts': 1.3.0
-      '@iringo/modkit-plugin-loon': 1.3.0
-      '@iringo/modkit-plugin-stash': 1.3.0
-      '@iringo/modkit-plugin-surge': 1.3.0
-      '@iringo/modkit-shared': 1.3.0
+      '@iringo/modkit-plugin-boxjs': 1.3.1
+      '@iringo/modkit-plugin-dts': 1.3.1
+      '@iringo/modkit-plugin-loon': 1.3.1
+      '@iringo/modkit-plugin-stash': 1.3.1
+      '@iringo/modkit-plugin-surge': 1.3.1
+      '@iringo/modkit-shared': 1.3.1
       '@rsbuild/core': 1.1.0
       '@rspack/core': 1.1.0(@swc/helpers@0.5.13)
       express: 4.21.1

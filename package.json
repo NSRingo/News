@@ -29,16 +29,16 @@
 		"example": "example"
 	},
 	"scripts": {
-		"dev": "modkit dev -c modkit.dev.config.js",
+		"dev": "modkit dev -c modkit.dev.config.ts",
 		"build": "modkit build",
-		"build:dev": "modkit build -c modkit.dev.config.js",
+		"build:dev": "modkit build -c modkit.dev.config.ts",
 		"dts": "modkit dts"
 	},
 	"browserslist": [
 		"iOS >= 15"
 	],
 	"devDependencies": {
-		"@iringo/modkit": "1.3.0",
+		"@iringo/modkit": "1.3.1",
 		"@iringo/modkit-plugin-egern": "1.2.0",
 		"@rsbuild/plugin-node-polyfill": "^1.2.0"
 	},
