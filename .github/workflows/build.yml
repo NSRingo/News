@@ -16,13 +16,20 @@ jobs:
         with:
           submodules: recursive
           token: ${{ secrets.SUBMODULE_TOKEN }}
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
       - name: Set up Node.js
         uses: actions/setup-node@main
         with:
           node-version: 'latest'
-          cache: 'npm'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
       - name: Update local package.json version from release tag
         if: github.ref_type == 'tag'
         uses: BellCubeDev/update-package-version-by-release-tag@v2
@@ -30,10 +37,8 @@ jobs:
           version: ${{ github.ref_name }}
           keep-v: "false" # If set to "true", will not remove any 'v' prefix from the version number.
           ignore-semver-check: "false" # If set to "true", will not check if the version number is a valid semver version.
-      - name: Build scripts
-        run: npm run build
-      - name: Generate modules
-        run: npm run build:args
+      - name: Build
+        run: pnpm build
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
