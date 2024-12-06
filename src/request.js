@@ -1,20 +1,19 @@
-import { $app, Lodash as _, Storage, fetch, notification, log, logError, wait, done } from "@nsnanocat/util";
+import { $app, Console, done, Lodash as _ } from "@nsnanocat/util";
 import database from "./function/database.mjs";
 import setENV from "./function/setENV.mjs";
 // 构造回复数据
+// biome-ignore lint/style/useConst: <explanation>
 let $response = undefined;
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
-log(`⚠ url: ${url.toJSON()}`, "");
+Console.info(`url: ${url.toJSON()}`, "");
 // 获取连接参数
-const METHOD = $request.method,
-	HOST = url.hostname,
-	PATH = url.pathname;
-log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}`, "");
+const PATHs = url.pathname.split("/").filter(Boolean);
+Console.info(`PATHs: ${PATHs}`);
 // 解析格式
 const FORMAT = ($request.headers?.["Content-Type"] ?? $request.headers?.["content-type"])?.split(";")?.[0];
-log(`⚠ FORMAT: ${FORMAT}`, "");
+Console.info(`FORMAT: ${FORMAT}`, "");
 !(async () => {
 	/**
 	 * @type {{Settings: import('./types').Settings}}
@@ -56,11 +55,11 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "application/json":
 					body = JSON.parse($request.body ?? "{}");
 					// 主机判断
-					switch (HOST) {
+					switch (url.hostname) {
 						case "news-edge.apple.com":
 						case "news-todayconfig-edge.apple.com":
 							// 路径判断
-							switch (PATH) {
+							switch (url.pathname) {
 								case "/v1/configs":
 									if (Settings.CountryCode !== "AUTO") body.storefrontId = Configs.Storefront[Settings.CountryCode];
 									if (body?.deviceInfo?.preferredLanguages) {
@@ -73,7 +72,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 							break;
 						case "news-events.apple.com":
 						case "news-sports-events.apple.com":
-							switch (PATH) {
+							switch (url.pathname) {
 								case "/analyticseventsv2/async":
 									if (body?.data?.session?.mobileData) {
 										body.data.session.mobileData.countryCode = "310";
@@ -84,7 +83,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 							}
 							break;
 						case "news-client-search.apple.com":
-							switch (PATH) {
+							switch (url.pathname) {
 								case "/v1/search":
 									break;
 							}
@@ -106,25 +105,25 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 		case "OPTIONS":
 		default:
 			// 主机判断
-			switch (HOST) {
+			switch (url.hostname) {
 				case "news-edge.apple.com":
 				case "news-todayconfig-edge.apple.com":
 					// 路径判断
-					switch (PATH) {
+					switch (url.pathname) {
 						case "/v1/configs":
 							break;
 					}
 					break;
 				case "news-events.apple.com":
 				case "news-sports-events.apple.com":
-					switch (PATH) {
+					switch (url.pathname) {
 						case "/analyticseventsv2/async":
 							break;
 					}
 					break;
 				case "news-client-search.apple.com":
-					switch (PATH) {
-						case "/v1/search":
+					switch (url.pathname) {
+						case "/v1/search": {
 							const ParsecParameters = url.searchParams.get("parsecParameters"),
 								StorefrontID = url.searchParams.get("storefrontID"),
 								NewsPlusUser = url.searchParams.get("newsPlusUser");
@@ -143,6 +142,7 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 							}
 							if (NewsPlusUser) url.searchParams.set("newsPlusUser", Settings.NewsPlusUser || NewsPlusUser);
 							break;
+						}
 					}
 					break;
 			}
@@ -152,13 +152,13 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 			break;
 	}
 	$request.url = url.toString();
-	log("🚧 调试信息", `$request.url: ${$request.url}`, "");
+	Console.debug(`$request.url: ${$request.url}`, "");
 })()
-	.catch(e => logError(e))
+	.catch(e => Console.error(e))
 	.finally(() => {
 		switch (typeof $response) {
 			case "object": // 有构造回复数据，返回构造的回复数据
-				//log("🚧 finally", `echo $response: ${JSON.stringify($response, null, 2)}`, "");
+				//Console.debug("finally", `echo $response: ${JSON.stringify($response, null, 2)}`);
 				if ($response.headers?.["Content-Encoding"]) $response.headers["Content-Encoding"] = "identity";
 				if ($response.headers?.["content-encoding"]) $response.headers["content-encoding"] = "identity";
 				switch ($app) {
@@ -175,12 +175,11 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 				}
 				break;
 			case "undefined": // 无构造回复数据，发送修改的请求数据
-				//log("🚧 finally", `$request: ${JSON.stringify($request, null, 2)}`, "");
+				//Console.debug("finally", `$request: ${JSON.stringify($request, null, 2)}`);
 				done($request);
 				break;
 			default:
-				logError(`不合法的 $response 类型: ${typeof $response}`, "");
-				done();
+				Console.error(`不合法的 $response 类型: ${typeof $response}`);
 				break;
 		}
 	});

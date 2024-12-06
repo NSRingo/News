@@ -1,14 +1,12 @@
 export default {
     "News": {
         "Settings": {
-            "Switch": true,
             "CountryCode": "US",
             "NewsPlusUser": true
         }
     },
     "Default": {
         "Settings": {
-            "Switch": true,
         },
         "Configs": {
             "Storefront": {

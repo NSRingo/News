@@ -1,6 +1,5 @@
 {
-	"name": "news",
-	"version": "3.1.5",
+	"name": "@nsringo/news",
 	"organizationName": " iRingo",
 	"displayName": " iRingo: 📰 News",
 	"description": "1.自定义解锁News的地区\n2.Coming Soon…",
@@ -29,20 +28,28 @@
 		"example": "example"
 	},
 	"scripts": {
-		"dev": "modkit dev -c modkit.dev.config.ts",
-		"build": "modkit build",
-		"build:dev": "modkit build -c modkit.dev.config.ts",
-		"dts": "modkit dts"
+		"build": "rspack build",
+		"build:dev": "rspack build -c rspack.dev.config.js --mode=development",
+		"build:args": "arguments-builder build",
+		"dts": "arguments-builder dts",
+		"new dev": "modkit dev -c modkit.dev.config.ts",
+		"new build": "modkit build",
+		"new build:dev": "modkit build -c modkit.dev.config.ts",
+		"new dts": "modkit dts"
 	},
 	"browserslist": [
 		"iOS >= 15"
 	],
 	"devDependencies": {
-		"@iringo/modkit": "^1.3.2",
-		"@iringo/modkit-plugin-egern": "^1.3.2",
-		"@rsbuild/plugin-node-polyfill": "^1.2.0"
+		"@iringo/arguments-builder": "^1.8.5",
+		"@iringo/modkit": "^1.3.3",
+		"@iringo/modkit-plugin-egern": "^1.3.3",
+		"@rsbuild/plugin-node-polyfill": "^1.2.0",
+		"@rspack/cli": "^1.1.5",
+		"@rspack/core": "^1.1.5",
+		"node-polyfill-webpack-plugin": "^4.1.0"
 	},
 	"dependencies": {
-		"@nsnanocat/util": "^1.4.8"
+		"@nsnanocat/util": "^1.7.5"
 	}
 }

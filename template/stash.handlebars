@@ -1,0 +1,49 @@
+name: "{{@package 'displayName'}}"
+desc: |-
+  {{#each (split (@package 'description') "\n")}}
+  {{{this}}}
+  {{/each}}
+  注：该覆写包含代理规则，使用过程中gateway.icloud.com会走与News相同的代理线路。
+openUrl: "{{@package 'openUrl'}}"
+author: |-
+  {{#each (@package 'contributors')}}
+  {{{this}}}
+  {{/each}}
+homepage: "{{@package 'homepage'}}"
+icon: "{{@package 'icon'}}"
+category: "{{@package 'organizationName'}}"
+date: "{{now "yyyy-MM-dd HH:mm:ss"}}"
+version: "{{@package 'version'}}"
+
+rules:
+  - DOMAIN,gateway.icloud.com,PROXY
+  - DOMAIN,news-edge.apple.com,PROXY
+  - DOMAIN,news-events.apple.com,PROXY
+  - DOMAIN,apple.comscoreresearch.com,PROXY
+  - URL-REGEX,^https?:\/\/news-assets\.apple\.com\/(audio-narrative|podcast\/audio)\/.*,PROXY
+
+http:
+  mitm:
+    - "news-edge.apple.com"
+    - "news-todayconfig-edge.apple.com"
+    - "news-sports-events.apple.com"
+    - "news-events.apple.com"
+    - "news-client.apple.com"
+    - "news-client-search.apple.com"
+  script:
+    - match: ^https?:\/\/news(-todayconfig)?-edge\.apple\.com\/v1\/configs
+      name: News.request
+      type: request
+      require-body: true
+    - match: ^https?:\/\/news(-sports)?-events\.apple\.com\/analyticseventsv2\/async
+      name: News.request
+      type: request
+      require-body: true
+    - match: ^https?:\/\/news-client-search\.apple\.com\/v1\/search
+      name: News.request
+      type: request
+
+script-providers:
+  News.request:
+    url: https://github.com/NSRingo/News/releases/download/v{{@package 'version'}}/request.bundle.js
+    interval: 86400

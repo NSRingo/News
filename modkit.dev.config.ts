@@ -87,18 +87,6 @@ export default defineConfig({
 		},
 		arguments: [
 			{
-				key: "Switch",
-				name: "总功能开关",
-				defaultValue: true,
-				type: {
-					default: "boolean",
-					surge: "exclude",
-					loon: "exclude",
-					stash: "exclude",
-				},
-				description: "是否启用此APP修改。",
-			},
-			{
 				key: "CountryCode",
 				name: "国家或地区代码",
 				defaultValue: "US",

@@ -27,4 +27,4 @@ jobs:
           token: ${{ secrets.GIST_TOKEN }}
           gist_id: fe3c29c45fd096d701ebf5b43f1e76b1
           gist_description: " iRingo: 📰 News β"
-          file_path: dist/scripts/request.js
+          file_path: dist/request.bundle.js

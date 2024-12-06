@@ -6,7 +6,7 @@ import { pluginLoon } from "@iringo/modkit/plugins/loon";
 import { pluginStash } from "@iringo/modkit/plugins/stash";
 import { pluginSurge } from "@iringo/modkit/plugins/surge";
 import { pluginNodePolyfill } from "@rsbuild/plugin-node-polyfill";
-import pkg from "./package.json";
+import pkg from "./package.json" with { type: "json" };
 
 export default defineConfig({
 	source: {
@@ -64,18 +64,6 @@ export default defineConfig({
 			},
 		},
 		arguments: [
-			{
-				key: "Switch",
-				name: "总功能开关",
-				defaultValue: true,
-				type: {
-					default: "boolean",
-					surge: "exclude",
-					loon: "exclude",
-					stash: "exclude",
-				},
-				description: "是否启用此APP修改。",
-			},
 			{
 				key: "CountryCode",
 				name: "国家或地区代码",
