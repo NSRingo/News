@@ -19,11 +19,7 @@ export default defineConfig({
 			{
 				path: "./dist/iRingo.News.stoverride",
 				template: "./template/stash.handlebars",
-			},
-			{
-				path: "./dist/iRingo.News.srmodule",
-				template: "./template/shadowrocket.handlebars",
-			},
+			}
 		],
 		dts: {
 			isExported: true,
@@ -62,6 +58,21 @@ export default defineConfig({
 			defaultValue: true,
 			type: "boolean",
 			description: "是否显示News+搜索结果。",
+		},
+		{
+			key: "LogLevel",
+			name: "[调试] 日志等级",
+			type: "string",
+			defaultValue: "WARN",
+			description: "选择脚本日志的输出等级，低于所选等级的日志将全部输出。",
+			options: [
+				{ key: "OFF", label: "关闭" },
+				{ key: "ERROR", label: "❌ 错误" },
+				{ key: "WARN", label: "⚠️ 警告" },
+				{ key: "INFO", label: "ℹ️ 信息" },
+				{ key: "DEBUG", label: "🅱️ 调试" },
+				{ key: "ALL", label: "全部" },
+			],
 		},
 	],
 });

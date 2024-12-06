@@ -50,6 +50,6 @@
 		"node-polyfill-webpack-plugin": "^4.1.0"
 	},
 	"dependencies": {
-		"@nsnanocat/util": "^1.7.5"
+		"@nsnanocat/util": "^1.7.6"
 	}
 }

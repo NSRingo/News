@@ -1,13 +1,5 @@
 export interface Settings {
     /**
-     * 总功能开关
-     *
-     * 是否启用此APP修改。
-     *
-     * @defaultValue true
-     */
-    Switch?: boolean;
-    /**
      * 国家或地区代码
      *
      * 不同国家或地区提供的内容或有差别。
@@ -39,4 +31,22 @@ export interface Settings {
      * @defaultValue true
      */
     NewsPlusUser?: boolean;
+    /**
+     * [调试] 日志等级
+     *
+     * 选择脚本日志的输出等级，低于所选等级的日志将全部输出。
+     *
+     * @remarks
+     *
+     * Possible values:
+     * - `'OFF'` - 关闭
+     * - `'ERROR'` - ❌ 错误
+     * - `'WARN'` - ⚠️ 警告
+     * - `'INFO'` - ℹ️ 信息
+     * - `'DEBUG'` - 🅱️ 调试
+     * - `'ALL'` - 全部
+     *
+     * @defaultValue "WARN"
+     */
+    LogLevel?: 'OFF' | 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'ALL';
 }
